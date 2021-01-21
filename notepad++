@@ -1,0 +1,76 @@
+使用Notepad++编译运行C/C++/Python程序
+0. 准备好编译器
+
+C/C++编译器，这里推荐MinGW：
+https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win64/Personal%20Builds/
+还有python：
+https://www.python.org/downloads/
+
+安装完毕，你需要添加MinGW的bin目录和Python目录，到环境变量Path。
+目的就是让系统可以找到gcc.exe,g++.exe,以及python.exe
+
+1. 安装Notepad++插件
+
+你需要安装插件NppExec，安装过程不再赘述
+
+2. 通过NppExec配置编译命令
+
+以下以Python为例，按F6，进去命令编辑窗口，录入解释执行Python程序的命令，
+
+命名为Python, Save
+
+
+
+3. 测试一下
+
+编写测试程序test.py，按F6，选择执行命令Python，结果就会现在下方：
+
+
+
+4. 为执行命令添加快捷键
+
+首先选择“插件”=》“NppExec”=>“Advanced Options”，
+
+添加一个菜单项，命名为Python，关联的脚本也是Python（之前编写好的）。点击Add/Modify即可。
+
+
+
+菜单加完了，最后设置快捷键。
+
+选择“设置”=》“管理快捷键”=》“插件命令”。
+
+找到Python菜单（在最后），设置快捷键即可。
+
+
+
+这样就完成了。
+
+以后就可以用Notepad++编写Python程序，然后使用快捷键“Ctrl+Alt+P”执行Python程序了。
+
+ 
+
+想要Notepad++支持C/C++程序的编译执行，可以按照上面的方法设置。
+
+唯一的区别就是第2步设置编译命令的不同。
+
+这里列出三种语言的编译执行命令：
+
+设置C编译执行的命令：
+
+NPP_SAVE
+cmd /c gcc  -g -W -Wall "$(CURRENT_DIRECTORY)\$(FILE_NAME)" -o "$(CURRENT_DIRECTORY)\$(NAME_PART).exe"
+echo
+echo ==========编译成功后开始运行==========
+"$(CURRENT_DIRECTORY)\$(NAME_part).exe"
+设置C++编译执行的命令：
+
+NPP_SAVE
+cmd /c g++  -g -W -Wall "$(CURRENT_DIRECTORY)\$(FILE_NAME)" -o "$(CURRENT_DIRECTORY)\$(NAME_PART).exe"
+echo
+echo ==========编译成功后开始运行==========
+"$(CURRENT_DIRECTORY)\$(NAME_part).exe"
+设置Python解释执行的命令：
+
+NPP_SAVE
+cmd /c python "$(FULL_CURRENT_PATH)" 
+ 
